@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //자바와 자바스크립트의 차이점.
+        //함수를 변수에 저장하고,
+        //함수를 다른 함수의 파라미터로 전달가능
+        //함수를 다른 함수에서 반환가능
+        //자바는 객체지향언어(OOP)이고
+        //자바스크립트 함수형 언어이다.
+        //위의 3가지 조건을 만족하는 것을
+        //first citizen(일급 객체)라고 하고,
+        //자바스크립트에서 함수가 위의 3가지 조건을
+        //만족하므로 함수가 일급객체다.
+        var a=50;// 변수 선언 및 초기화
+        console.log("a의 값: "+a);
+        var b= a+50;
+        console.log(b);//개발자 도구에서 확인
+
+        function sum(a, c){//함수 정의
+            var result = a+c;
+            console.log("두개의 파라미터 값을 더한 결과는"+result);
+        }
+
+        sum(5,8);
+        console.log("첫번째 파라미터에서 두번째 파라미터 값을 뺀 결과는"+res);
+
+        function minus(a,b){
+            var result = a-b;
+            return result;
+        }
+
+        var res=minus(a,b);
+        var result1=[];
+        for(var i=0; i<5; i++){
+            result1[i]= minus(a+i,b);
+        }
+        for(var i=0; i<5; i++)
+            console.log("반복문 결과는: "+result1[i]);
+            
+        var inputString = prompt("문자열을 입력하세요", "기본값 문자열");
+
+        if(inputString=="1"){
+            var add = sum(9,3);
+            console.log("더한 결과는 ",add);
+        }
+            
+        else if(inputString=="2"){
+            var sub = minus(6,1);
+            conosole.log("뺀 결과는 ",sub);
+        }
+            
+        else
+            console.log("값을 잘못 입력하셨습니다.");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

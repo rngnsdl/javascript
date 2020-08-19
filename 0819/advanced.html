@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고급</title>
+    <script>
+        var a = function(i,j){ //변수에 익명함수 대입
+            return i+j;
+        }
+        var b= function(i,j,k){
+            console.log(i*j*k+"가 호출되었습니다. ");
+            return i*j*k;
+        }
+        function print(i){
+            console.log("출력"+i);
+        }
+        function sum(a,b,c,d){
+            var re1=0;
+            c(7); //여기서 콜백이 일어남
+            d(3,4,5);
+        }
+        var re=sum(5,7,print,b);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
