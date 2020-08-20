@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Fish!</title>
+    <style>
+        body{
+            font-size: 8pt;
+        }
+        #panel{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #999;
+            position: relative;
+        }
+        #fish{
+            position: absolute;
+            left: 50px;
+            top: 200px;
+        }
+    </style>
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        
+        $(document).ready(function(){
+            var $fish = $("#fish");
+            var x= 50;
+            var y=20;
+
+            $(document).keydown(function(e){
+                console.log("입력한 키보드 값: "+e.keyCode);
+
+                switch(e.keyCode){
+                    //왼쪽 화살표
+                    case 37:
+                        x-=50;
+                        break;
+                    //오른쪽 화살표
+                    case 39:
+                        x+=50;
+                        break;
+                    //위쪽 화살표
+                    case 38:
+                        y-=50;
+                        break;
+                    //아래쪽 화살표
+                    case 40:
+                        y+=50;
+                        break;
+                }
+                //물고기 유효값 처리
+                if(x<0) x=0;
+                //패널 너비 =500, 물고기 너비 =120
+                if(x>500-120) x= 500-120;
+                if(y<0) y=0;
+                //패널 높이 = 500, 물고기 너비 = 70
+                if(y>500-70) y=500-70;
+                //물고기 이동 위치 확인하기
+                console.log("물고기 위치값 ",x,y);
+                //물고기 이동시키기
+                $fish.css({
+                    left:x,
+                    top:y
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+    <div id="panel"><img src="fish.png" alt="" id="fish"></div>
+
+</body>
+</html>

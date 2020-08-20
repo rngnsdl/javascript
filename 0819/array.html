@@ -4,25 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>배열</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
     <script>
         var userName=["ddandongne","철수","영희","아영","정희","선희","영자","병철"];
         
-        for(var i=0; i<userName.length; i++){
-            if(i%2==0)
-                userName[i] += " 아닙니다.";
-            else
-                userName[i]+= " 입니다.";
+        $(document).ready(function(){
+            for(var i=0; i<userName.length; i++){
+                if(i%2==0)
+                    userName[i] += " 아닙니다.";
+                else
+                    userName[i]+= " 입니다.";
         }
+            /*for(var i=0; i<userName.length; i++) document.write(userName[i]+"<br>");*/
 
-        for(var i=0; i<userName.length; i++) document.write(userName[i]+"<br>");
-
-        $("li").each(function(i,j){
-            $(this).text(userName[i]);
-        })
+            $("li").each(function(i,j){
+                $(this).text(userName[i]); //this는 j. 값을 의미한다.
+            })
+        });
     
     </script>
 </head>
 <body>
-    
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
 </body>
 </html>

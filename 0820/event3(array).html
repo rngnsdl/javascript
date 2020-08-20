@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+
+        // 함수선언 및 정의
+        var func=[sum, min, mul, div];//배열에 함수이름 저장
+        var string=["더하기","빼기","곱하기","나누기"]
+
+        function sum(i,j){
+                var result=i+j;
+                return result;
+                console.log("두개의 변수를 더한 결과는 "+result);
+            }
+
+        function min(i,j){
+            var result= i-j;
+            return result;
+            console.log("두개의 변수를 뺀 결과는 "+result);
+        }
+
+        function mul(i,j){
+            var result= i*j;
+            return result;
+            console.log("두개의 변수를 곱한 결과는 "+result);
+        }
+
+        function div(i,j){
+            var result= i/j;
+            return result;
+            console.log("두개의 변수를 나눈 결과는 "+result);
+        }
+
+        
+        $(document).ready(function(){ //on은 jquery 메서드
+            //대상체 (document)에 ready 이벤트가 발생하면 두번째 파라미터 함수를 실행
+            //등록하는 절차
+            $("button").each(function(i,j){
+                console.log("여기는 몇번 실행되나?");
+                $(this).click(function(){
+                    var result = func[i](parseInt($(".first").val()),
+                                        parseInt($(".second").val()));
+                    console.log("배열의 함수 이름의 결과는 "+result);
+                })
+            })
+        })
+
+        
+        
+    </script>
+</head>
+<body>
+    첫번째 파라미터는 : <input type="number" class="first">
+    두번째 파라미터는 : <input type="number" class="second">
+    <p></p>
+    <button id="plus">더하기</button>
+    <p></p>
+    <button id="minus">빼기</button>
+    <p></p>
+    <button id="mul">곱하기</button>
+    <p></p>
+    <button id="div">나누기</button>
+</body>
+</html>

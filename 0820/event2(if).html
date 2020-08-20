@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+
+        // 함수선언 및 정의
+
+
+        function sum(i,j){
+                var result=i+j;
+                return result;
+                console.log("두개의 변수를 더한 결과는 "+result);
+            }
+
+        function min(i,j){
+            var result= i-j;
+            return result;
+            console.log("두개의 변수를 뺀 결과는 "+result);
+        }
+
+        function mul(i,j){
+            var result= i*j;
+            return result;
+            console.log("두개의 변수를 곱한 결과는 "+result);
+        }
+
+        function div(i,j){
+            var result= i/j;
+            return result;
+            console.log("두개의 변수를 나눈 결과는 "+result);
+        }
+
+        $(document).ready(function(){
+            if(button=="더하기"){
+                var first = parseInt($(".first").val());
+                var second = parseInt($(".second").val());
+                console.log("입력된 첫번째 값은: "+first);
+                console.log("입력된 두번째 값은: "+second);
+                console.log("두 값이 더해진 결과는: "+(sum(first,second)))
+            }
+
+            else if(button=="빼기"){
+                var first = parseInt($(".first").val());
+                var second = parseInt($(".second").val());
+                console.log("입력된 첫번째 값은: "+first);
+                console.log("입력된 두번째 값은: "+second);
+                console.log("두 값이 빼진 결과는: "+(min(first,second)))
+            }
+
+            else if(button="곱하기"){
+                var first = parseInt($(".first").val());
+                var second = parseInt($(".second").val());
+                console.log("입력된 첫번째 값은: "+first);
+                console.log("입력된 두번째 값은: "+second);
+                console.log("두 값을 곱한 결과는: "+(mul(first,second)))
+            }
+
+            else{
+                var first = parseInt($(".first").val());
+                var second = parseInt($(".second").val());
+                console.log("입력된 첫번째 값은: "+first);
+                console.log("입력된 두번째 값은: "+second);
+                console.log("두 값을 나눈 결과는: "+(div(first,second)))
+            }
+        })
+
+    </script>
+</head>
+<body>
+    첫번째 파라미터는 : <input type="number" class="first">
+    두번째 파라미터는 : <input type="number" class="second">
+    <button>더하기</button>
+    <button>빼기</button>
+    <button>곱하기</button>
+    <button>나누기</button>
+</body>
+</html>

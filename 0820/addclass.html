@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+            color:red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button#add").click(function(){
+                var list1 = $("ul li");
+                var input = $("input#add").val();//사용자 입력값을 input에 저장
+                    if(input>6) alert("입력 범위를 넘었습니다.");
+                list1.each(function(i,j){
+                    console.log(list1.length);
+
+                    if(i==input-1) $(this).addClass("a");
+                })
+            })
+            $("button#remove").click(function(){
+                var list1 = $("ul li");
+                var input = $("input#remove").val();//사용자 입력값을 input에 저장
+                    if(input>6) alert("입력 범위를 넘었습니다.");
+                list1.each(function(i,j){
+                    console.log(list1.length);
+
+                    if(i==input-1) $(this).removeClass("a").removeAttr("class");
+                })
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <ul>
+        <li>yo</li>
+        <li>yup</li>
+        <li>!</li>
+        <li>!!</li>
+        <li>!!!</li>
+        <li>!!!!!!!</li>
+    </ul>
+
+    <div>
+        <label for="add">추가</label>
+        <input type="number" id="add">
+        <button id="add">클래스추가</button>
+    </div>
+    <div>
+        <label for="remove">삭제</label>
+        <input type="number" id="remove">
+        <button id="remove">클래스삭제</button>
+    </div>
+</body>
+</html>
