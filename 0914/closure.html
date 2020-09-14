@@ -4,6 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        const dir = console.dir;
+        function outer(a){//외부함수
+            return function inner(b){//내부 함수
+                return a+b;
+            }
+        }
+        // 클로저(함수+변수) 객체
+        // 클로저의 조건.
+        //1) 중첩함수
+        //2) 내부 함수를 외부함수에서 반환
+        //3) 내부함수에서 외부함수의 지역변수를 참조
+        dir(outer(5));
+        dir(outer);
+
+        //클로저는 단순 객체일 뿐 = 함수 + lexical(static)변수
+
+        let result=5;
+        function add(a,b){
+            result = a+b+6;
+            return result;
+        }
+
+        add(3,4);
+
+        //currying 기법,
+        //함수 하나로 여러개의 매개변수를 전달하지 않고
+        //파라미터를 하나씩 처리하는 함수를 사용함
+        //나중에 들어오는 데이터는 미정임
+        function total(b){
+            return function add5(a){
+                return a+b;
+            }
+        }
+
+        console.log(total(10)(5));
+        console.log(total(15)(7));
+        console.clear();
+        function makeCounter(){
+            let count = 0;
+            return function(){
+                return count++;
+            }
+        }
+        const log = console.log;
+        let counter = makeCounter();
+        log(counter());
+        log(counter());
+        log(counter());
+    </script>
 </head>
 <body>
     

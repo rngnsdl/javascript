@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width:100%,
+            height=100%
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            // $("#clickme").click(function(){
+            //     $("#book").animate({
+            //         opacity:0.25,
+            //         left:"+=500",
+            //         height:"toggle"
+            //     } ,5000,function(){
+            //         console.log("완료가 되었나");
+            //     })
+            // })
+            let i =0;
+            $("#clickme").click(function(){
+                $("#book").animate({
+                    opacity:0.25,
+                    left:"+=500",
+                    height:"toggle"
+                } ,{
+                    duration:5000,
+                    step:function(now, fx){
+                        console.log("여기 step은 몇번 호출되나? ","now는: ", now, "fx는: ", fx);
+                    }
+                }, function(){
+                    console.log("완료가 되었나");
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="clickme">Click here!</div>
+    <img src="book.png" alt="" id="book" width="100" height="123"
+        style="position: relative; left:10px">
+</body>
+</html>
