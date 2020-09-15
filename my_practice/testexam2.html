@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: auto;
+        }
+        header {
+            background: lightgray;
+            height: 200px;
+            font-size: 20pt;
+            text-align: center;
+        }
+        main {
+            background: #f2f4f7;
+        }
+        nav{
+            text-align: center;
+            width:100%;
+            height: 70px;
+        }
+        #topMenu {            
+                height: 30px; 
+                width: 100%;
+        }
+        #topMenu ul li {                       
+                list-style: none;           
+                color: white;               
+                background-color: #2d2d2d;  
+                float: left;                
+                line-height: 30px;          
+                vertical-align: middle;     
+                text-align: center;         
+        }
+        #topMenu .menuLink {                               
+                text-decoration:none;                      
+                color: white;                              
+                display: block;                            
+                width: 150px;                              
+                font-size: 12px;                           
+                font-weight: bold;                         
+                font-family: "Trebuchet MS", Dotum, Arial; 
+        }
+        #topMenu .menuLink:hover {           
+                color: red;                   
+                background-color: #4d4d4d;    
+        }
+        Content{
+            border : 2px solid green;
+            height : 300px;
+            line-height: 300px;
+        }
+        Footer {
+            border : 2px solid black;            
+            height : 55px;
+            line-height : 55px;
+        }
+        section{
+            width:autod;
+            height:auto;
+        }
+        .small{
+            font-size: 6pt;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        function sum(a,b,c,d){
+            let resultsum;
+            resultsum = a+b+c+d;
+            return resultsum;
+        }
+
+        function mul(a,b,c,d){
+            let resultmul;
+            resultmul = a*b*c*d;
+            return resultmul;
+        }
+
+        function allcb(a,b,c,d,e,f){
+            let resultcb;
+            resultcb = a+b+c+d+e+f;
+            return resultcb;
+        }
+        $(document).ready(function(){
+            $("#minigame").hide();
+            $("#one").click(function(){
+                let sumresult = sum(parseInt($(".first").val()),
+                                parseInt($('.second').val()),
+                                parseInt($('.third').val()),
+                                parseInt($('.four').val()));
+                $("#result1").val(sumresult);
+            })
+
+            $("#two").click(function(){
+                let mulResult = mul(parseInt($(".t_first").val()),
+                                parseInt($('.t_second').val()),
+                                parseInt($('.t_third').val()),
+                                parseInt($('.t_four').val()));
+                $("#result2").val(mulResult);
+            })
+
+            $("#three").click(function(){
+                let resultlang="";
+                let chkbox = document.getElementsByName('language');
+                for(let i=0 ; i<chkbox.length ; i++) {
+                    if(chkbox[i].checked) {
+                        resultlang+=chkbox[i].value+", ";
+                    }
+                }
+                resultlang= resultlang.substring(0,resultlang.length-2);
+                $("#result3").val(resultlang);
+            })  
+
+            $("#four").click(function(){
+                let change=true;
+                let colorArr;
+                colorArr = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+                setInterval (function(){
+                let colorResult="";
+                for(let i=0; i<6; i++){
+                    colorResult+= colorArr[parseInt(Math.random()*15)];
+                }
+                colorResult="#"+colorResult;
+                $("#colorch").css("color", colorResult);
+                },1000);
+            })
+
+            $("#fourstop").click(function(){
+                $("#fourstop").unbind(setInterval());
+                $("#colorch").css("color", "#000000");
+            })
+
+            $("#five").click(function(){
+                $("#five").addClass('minigame condition');
+            })
+
+            $("#fiveth").click(function(){
+                let check= $("#five").hasClass('minigame condition');
+                if(check==true){
+                    alert("조건만족! 미니게임 실행 버튼을 추가해줄게요");
+                    $("#minigame").show();
+                } else {
+                    alert("조건 불만족!");
+                }
+            })
+            
+            $("#minigame").click(function(){
+                location.href="chrome://dino";
+            })
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <header>
+            <br>
+            <br>
+            <strong>My Exam Project Page</strong>
+        </header>
+        <nav id="topMenu" >
+            <ul>
+                    <li><a class="menuLink" href="#">About us</a></li>
+                    <li><a class="menuLink" href="#">Ministries</a></li>
+                    <li><a class="menuLink" href="#">Community</a></li>
+                    <li><a class="menuLink" href="#">Locations</a></li>
+                    <li><a class="menuLink" href="#">Blog</a></li>
+                    <li><a class="menuLink" href="#">News</a></li>
+                    <li><a class="menuLink" href="#">Cafe</a></li>
+                    <li><a class="menuLink" href="#">Internet</a></li>
+                    <li><a class="menuLink" href="#">Information</a></li>
+                    <li><a class="menuLink" href="#">Numbers</a></li>
+                    <li><a class="menuLink" href="#">OpenTime</a></li>
+                    <li><a class="menuLink" href="#">FutureLoad</a></li>
+            </ul>
+        </nav>
+        <section> 
+            <article> 
+                <fieldset>
+                    <legend>1버튼을 누르면 4개의 값을 더할 수 있습니다!</legend>
+                        <ul>
+                            <li style="list-style: none;">첫번째 값: <input type="number" class="first"></li>
+                            <li style="list-style: none;">두번째 값: <input type="number" class="second"></li>
+                            <li style="list-style: none;">세번째 값: <input type="number" class="third"></li>
+                            <li style="list-style: none;">네번째 값: <input type="number" class="four"></li>
+                            <button id="one">button1</button>
+                            <h3>더해진 결과</h3>
+                            <input type="admin" value="" id=result1 placeholder="값 출력구간">
+                        </ul>
+                </fieldset>
+                <fieldset>
+                    <legend>2버튼을 누르면 4개의 값을 곱할 수 있습니다!</legend>
+                        <ul>
+                            <li style="list-style: none;">첫번째 값: <input type="number" class="t_first"></li>
+                            <li style="list-style: none;">두번째 값: <input type="number" class="t_second"></li>
+                            <li style="list-style: none;">세번째 값: <input type="number" class="t_third"></li>
+                            <li style="list-style: none;">네번째 값: <input type="number" class="t_four"></li>
+                            <button id="two">button2</button>
+                            <h3>곱해진 결과</h3>
+                            <input type="admin" value="" id=result2 placeholder="값 출력구간">
+                        </ul>
+                </fieldset>
+                <fieldset>
+                    <legend>3버튼을 누르면 체크박스에 체크되어 있는 항목을 출력합니다.</legend>
+                        <ul>
+                            <h5>당신이 사용하는 프로그래밍 언어를 선택하세요.</h5>
+                            <li>
+                                <label><input type="checkbox" name="language" value="Java">Java</label>
+                            </li>
+                            <li>
+                                <label><input type="checkbox" name="language" value="Java Script">Java Script</label>
+                            </li>
+                            <li>
+                                <label><input type="checkbox" name="language" value="C++">C++</label>
+                            </li>
+                            <li>
+                                <label><input type="checkbox" name="language" value="Python">Python</label>
+                            </li>
+                            <li>
+                                <label><input type="checkbox" name="language" value="Kotlin">Kotlin</label>
+                            </li>
+                            <li>
+                                <label><input type="checkbox" name="language" value="Ruby">Ruby</label>
+                            </li>
+                            <br>
+                                <button id="three">button3</button>
+                                <h3>당신이 사용하는 언어는?</h3>
+                                <input type="admin" value="" id=result3 placeholder="값 출력구간">
+                            
+                        </ul>
+                </fieldset>
+                <fieldset>
+                    <legend>4버튼을 누르면 구역내의 색깔이 1초마다 변합니다!</legend>
+                        <ul>
+                            <p id="colorch">색깔은 이곳에서 변할 것입니다!</p>
+                            <button id="four">button4</button>
+                        </ul>
+                </fieldset>
+                <fieldset>
+                    <legend>5버튼을 누르면 구역내에 '미니게임' 버튼이 추가 됩니다.</legend>
+                        <ul id="fiveth">
+                            <button id="five">button5</button>
+                            <button id="fiveth">미니게임 자격요건 확인</button>
+                            <button type="button" id=minigame onclick="location.href='testexam_minigame.html'">미니게임</button>
+                        </ul>
+                </fieldset>
+            </article>
+        </section>
+    <article>
+        <p class="small">사업번호: 000-000-000-000</p>
+        <p class="small">전화번호: 02-000-0000</p>
+        <p class="small">찾아오시는 길: 서울특별시 강남구 테헤란로</p>
+    </article>
+        
+    </div>
+</body>
+</html>
