@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* *자바스크립트의 prototype 기반의 클래스 생성
+            1) 함수 이름의 첫번째 글자를 대문자로 한다.
+            2) 함수의 변수는 클래스의 멤버변수
+                함수의 메서드(함수 이름)는 prototype
+                함수이름.prototype.함수 이름 = function (){};
+            
+            EX) TabMenu.prototype.init = function(){};
+                TabMenu는 2개를 생성
+                TabMenu => prototype
+                prototype => constructor, __proto__
+                __proto__ => 프로토 타입 링크
+                __proto__는 link를 통해 계속 찾아가면서, init을 발견하면 실행을 하고,
+                그렇지 않으면 계속 __proto__ 를 쫓아가고, Object까지 가서 찾지 못하면 null (에러발생)
+                
+                ex)
+                let menu = new TabMenu() 이렇게 객체를 생성하면
+                menu가 만들어지고, 여기 속성 __proto__가 있어서 __proto__를 계속 찾아간다.
+                !결론적으로 함수(메서드)는 공유하고, 변수는 객체 생성시 별도로 관리한다.
+        */
+        function TapMenu(){
+            let eye = 78;
+            let nose = 10;
+        }
+
+        TapMenu.prototype.init=function(){
+
+        };
+
+        let menu = new TapMenu();
+        console.log(menu);
+        //menu.init();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

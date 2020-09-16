@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        function Calculator(){
+
+        }
+
+        init=function(){
+            let $inputvalue= [];
+            $(".input").each(function(){
+                $inputvalue.push(parseInt($(this).val));
+            })
+        }
+
+        Calculator.prototype.initEvent = function(){
+            $("#plus").click(this.plus);
+            $("#minus").click(this.minus);
+            $("#plus").click(this.mul);
+            $("#plus").click(this.plus);
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="one">
+    <input type="text" id="two">
+    <input type="text" id="three">
+    <input type="text" id="four">
+    <button id=plu>+</button>
+    <button id=min>-</button>
+    <button id=mul>*</button>
+    <button id=div>/</button>
+    <input type="admin" id="result">
+
+</body>
+</html>
