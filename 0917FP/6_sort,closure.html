@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort and Closure</title>
+    <script>
+        const log = console.log;
+
+        let fruit = ['cherries', 'apples', 'bananas'];
+        fruit.sort();
+        log(fruit); //자바스크립트 배열내장 함수 sort
+        let people = [
+        {firstname: "aaFirstName", lastname: "cclastName"},
+        {firstname: "ccFirstName", lastname: "aalastName"},
+        {firstname:"bbFirstName", lastname:"bblastName"}
+        ];
+        people.sort((a,b)=>{
+            return (a.firstname<b.firstname) ? -1:
+                (a.firstname>b.firstname)? 1:0});
+
+        const sortBy=(property)=>{
+            return (a, b) => {
+                let result = (a[property] < b[property]) ? -1 :
+                    (a[property] > b[property]) ? 1 : 0;
+                return result;
+            }
+        }
+        log(people.sort(sortBy("firstname")));
+        log(people.sort(sortBy("lastname")));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

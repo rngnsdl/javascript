@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const log = console.log;
+
+        const forEach = (array,fn)=>{
+            for(let i =0; i<array.length; i++){
+                fn(array[i]);
+            }
+        }
+        const forEachObject = (obj, fn)=>{
+            for(let property in obj){
+                if(obj.hasOwnProperty(property)){
+                    //파라미터(인자)로 키와 값으로 호출되는 함수]
+                    fn(property,obj[property]);
+                }
+            }
+        }
+        //첫번째 파라미터가 거짓일때만 두번째 함수 실행
+        const unless = (predicate, fn)=>{
+            if(!predicate)
+                fn();
+        }
+
+        //forEach함수와 유사
+        //배열 보다는 Number에 동작함
+        const times = (times, fn)=>{
+            for(let i=0; i<times.length; i++) fn(i);
+        }
+        times(50,function(n){
+            unless(n>20, function(){
+                log(n,"짝수임");
+            })
+        })
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

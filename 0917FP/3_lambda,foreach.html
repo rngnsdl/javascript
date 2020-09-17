@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const log = console.log;
+        const forEach = (array,fn)=>{
+            for(let i =0; i<array.length; i++){
+                fn(array[i]);
+            }
+        }
+        const forEachObject = (obj, fn)=>{
+            for(let property in obj){
+                if(obj.hasOwnProperty(property)){
+                    //파라미터(인자)로 키와 값으로 호출되는 함수]
+                    fn(property,obj[property]);
+                }
+            }
+        }
+
+        const unless = (predicate, fn)=>{
+            if(!predicate)
+                fn()
+        }
+        let arr=[1,2,3,4,5,6,7];
+        forEach(arr, (number)=>{
+            unless((number%2), ()=>{
+                log(number,"짝수");
+            })
+        })
+
+        let result = () =>{
+            log(70,"짝수임");
+        }
+        let fn = (number) => (v)=>{
+            log(v,number,"숫자");
+        }
+
+        fn(7)(8);
+        let add = () => 8;
+        log("여기가 정답 ", unless(false, add));
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort and Closure</title>
+    <script>
+        const log = console.log;
+
+        let people = [
+        {firstname: "aaFirstName", lastname: "cclastName"},
+        {firstname: "ccFirstName", lastname: "aalastName"},
+        {firstname:"bbFirstName", lastname:"bblastName"}
+        ];
+
+        const forEach = (array,fn)=>{
+            for(let i =0; i<forEach.length; i++){
+                fn(array[i]);
+            }
+        }
+
+        people.sort((a,b)=>{
+            return (a.firstname<b.firstname) ? -1:
+                (a.firstname>b.firstname)? 1:0});
+
+        const sortBy=(property)=>{
+            return (a, b) => {
+                let result = (a[property] < b[property]) ? -1 :
+                    (a[property] > b[property]) ? 1 : 0;
+                return result;
+            }
+        }
+        
+        const tap =(value) =>
+                (fn) =>(
+                    typeof(fn)==='function' && fn(value),
+                    log(value)
+                )
+            tap("fun")((it)=> log*("value is ", it))
+
+            forEach([1,2,3],(a) =>
+                tap(a)(()=>{
+                    log(a);
+                })
+            )
+            
+            log([1,2,3].map(a=>a*a));
+            console.clear();
+            //문자를 숫자로 변경하고 싶다.
+            log(['1','2','3'].map(parseInt))
+            //예측한 결과가 나오지 않음
+            //하나의 데이터만 받을 수 있는 함수 사용함
+            //map을 이용하여 iteration 하면 그 이후 데이터는 index와 value
+            //2개를 반환하므로,
+            //그 다음 iteration하면 이전 '문자'를 숫자로 변환이 되지 않아서
+            //unary로 함수호출하고, 그 결과를 사용함
+            const unary = (fn)=>
+                fn.length===1
+                    ? fn
+                    :(arg) => fn(arg);
+            log(['1','2','3'].map(unary(parseInt)))
+            console.clear();
+            const once = (fn) =>{
+                let done = false;
+                return function(){
+                    return done? undefined:
+                    ((done=true), fn.apply(this, arguments))
+                }
+            }
+
+            let doPayment = once(() =>{
+                log("지불이 되었습니다.")
+            })
+
+            doPayment();
+            doPayment();//여기서 출력이 되지 않는다.
+            //은행에서 계좌 이체를 매일 한번만 하고 나중에는 하지 못하도록 할때
+            //유용하다.
+        
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

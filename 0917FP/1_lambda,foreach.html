@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const log = console.log;
+        const forEach = (array,fn)=>{
+            for(let i =0; i<forEach.length; i++){
+                fn(array[i]);
+            }
+        }
+        forEach([1,2,3],(data)=>{
+            log(2*data);
+        }) //API(Aplication program Interface)라이브러리를 사용자정의
+
+        [1,2,3,4,5].forEach(i=>console.log("2배값: ", 2*i)); 
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
