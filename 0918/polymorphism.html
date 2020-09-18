@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+
+	<style>
+		div.image-container {
+			position: relative;
+			border:1px solid #000;
+		}
+		div.image-container img {
+
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 120px;
+		}
+
+	</style>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("button").each(function(i){
+				let string = $(this).attr('id');
+					string = string.substring(3, string.length);
+					console.log(string);
+				let arr = [];
+				arr[i] = string;
+				$(this).click(function(i,j){
+					//string변수로 함수명을 가져오는것 까지는 성공했지만,
+					//string으로 함수호출을 할 수 없어, 더 생각해 보아야한다.
+				})
+			})
+		});
+
+
+		// 심플갤러리 클래스
+		function SimpleGallery(selector) {
+			this.$images = null;
+			this.init(selector);
+		}
+		SimpleGallery.prototype.init=function(selector){
+			this.$images = $(selector);
+		}
+		//show 함수에서 문자열 전달하면 여기 세부내용은 몰라도 됨 
+		SimpleGallery.prototype.show=function(alignable){//추상화
+			alignable.align(this.$images);//리터럴객체의 key값을이용하여 함수 호출
+		}
+		var horizontalAlignable={ //literal 객체로 aline 에 콜백 정의
+			align : function($images){
+				// 이미지 개수 구하기.
+				var length = $images.length;
+				// 이미지 배열하기.
+				for (var i = 0; i < length; i++) {
+					var x = i * 200;
+					$images.eq(i).css({
+						left : x
+					});
+				}
+			}
+		}
+		//세로 정렬
+		var verticalAlignable = {
+			align : function($images){
+				var length = $images.length;
+				for (var i = 0; i < length; i++) {
+					var y = i * 200;
+					$images.eq(i).css({
+						left : 0,
+						top:y
+					});
+				}
+			}
+		}
+		//랜덤 정렬처리
+		var randomAlignable = { 
+			align : function($images){
+				var length = $images.length;
+				// 이미지 배열하기.
+				for (var i = 0; i < length; i++) {
+					var x = 400*Math.random();
+					var y= 400*Math.random();
+					$images.eq(i).css({
+						left : x,
+						top:y
+					});
+				}
+			}
+		}
+		//바둑판식 정렬 처리 
+		var gridAlignable = {
+			align : function($images){
+				var length = $images.length;
+				var count =3;
+				for (var i = 0; i < length; i++) {
+					var x = (i%count) * 200;
+					var y = parseInt(i/count) *200;
+					$images.eq(i).css({
+						left : x,
+						top:y
+					});
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+<div>
+	<button id="btnHorizontal">가로정렬</button>
+	<button id="btnVertical">세로정렬</button>
+
+	<button id="btnRandom">랜덤정렬</button>
+	<button id="btnGrid">바둑판정렬</button>
+</div>
+
+<div class="image-container" id="container1">
+	<img src="banners/1.png" >
+	<img src="banners/2.png" >
+	<img src="banners/3.png" >
+	<img src="banners/4.png" >
+	<img src="banners/5.png" >
+	<img src="banners/6.png" >
+	<img src="banners/7.png" >
+	<img src="banners/8.png" >
+</div>
+</body>
+</html>

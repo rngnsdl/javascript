@@ -57,9 +57,9 @@
 
 		
 		function TabMenu(selector) {
-			this.$tabMenu = null;
-			this.$menuItems = null;
-			this.$selectMenuItem = null;
+			this.$tabMenu = null; //버튼 id
+			this.$menuItems = null; //// 버튼의 하위 li태그
+			this.$selectMenuItem = null;//
 			// 요소 초기화및 이벤트 등록 호출하기
 			this.init(selector);
 			this.initEvent();
@@ -68,30 +68,30 @@
 
 
 		// 요소 초기화
-		TabMenu.prototype.init = function(selector) {
+		TabMenu.prototype.init = function(selector) { //ul의 하위 태그를 찾는다.
 			this.$tabMenu = $(selector);
 			this.$menuItems = this.$tabMenu.find("li");
 			console.log("객체 생성됨?");
 		}
 
 		// 이벤트 등록
-		TabMenu.prototype.initEvent = function() {
+		TabMenu.prototype.initEvent = function() {  //ul의 하위 태그인 li태그가 클릭되면 버튼에 setSelectItem함수를 적용시킴
 			var objThis = this;
 			this.$menuItems.on("click", function() {
-				objThis.setSelectItem($(this));
+				objThis.setSelectItem($(this)); //여기서 this는 li태그
 				console.log("객체 생성됨!");
 			});
 		}
 
 		// $menuItem에 해당하는 메뉴 아이템 선택하기
-		TabMenu.prototype.setSelectItem = function($menuItem) {
+		TabMenu.prototype.setSelectItem = function($menuItem) { //$selectMenuItem에 class추가(스타일 적용) 해주는 함수
 			// 기존 선택메뉴 아이템을 비활성화 처리 하기
 			if (this.$selectMenuItem) {
 				this.$selectMenuItem.removeClass("select");
 			}
 
 			// 신규 아이템 활성화 처리 하기
-			this.$selectMenuItem = $menuItem;
+			this.$selectMenuItem = $menuItem; //인자로 li태그를 넘겼고 그것을 selectMenuItem에 적용시킴.
 			this.$selectMenuItem.addClass("select");
 		}
 
@@ -103,14 +103,14 @@
 		$(document).ready(function(){
 			// 인스턴스 생성
 			let tab= [];
-			for(let i=1; i<=$(".tab-menu").length; i++){
-				let newbtn = "<button id= \"btnSelect"+i+ "\">"+ " 인덱스로 메뉴 아이템"+i+ " 선택하기</button>"
+			for(let i=0; i<$(".tab-menu").length; i++){
+				let newbtn = "<button id= \"btnSelect"+(++i)+ "\">"+ " 인덱스로 메뉴 아이템"+(++i)+ " 선택하기</button>"
 				$('div').append(newbtn);
-				tab[i] = new TabMenu("#TabMenu"+i);
+				tab[i] = new TabMenu("#tabMenu"+(++i));
 				console.log(tab[i]);
 				
 			}
-				$(tab).each(function(i,j){
+				$("button").each(function(i,j){
 					$(this).click(function(){
 					let index = window.prompt("선택할 아이템의 인덱스 값을 입력하세요.");
 					index = parseInt(index);
